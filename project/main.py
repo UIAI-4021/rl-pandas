@@ -1,16 +1,26 @@
-# This is a sample Python script.
+import gym
+import gym_maze
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# Create an environment
+env = gym.make("maze-random-10x10-plus-v0")
+observation = env.reset()
 
+# Define the maximum number of iterations
+NUM_EPISODES = 1000
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+for episode in range(NUM_EPISODES):
 
+    # TODO: Implement the agent policy here
+    # Note: .sample() is used to sample random action from the environment's action space
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    # Choose an action (Replace this random action with your agent's policy)
+    action = env.action_space.sample()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Perform the action and receive feedback from the environment
+    next_state, reward, done, truncated = env.step(action)
+
+    if done or truncated:
+        observation = env.reset()
+
+# Close the environment
+env.close()
