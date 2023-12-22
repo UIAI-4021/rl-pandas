@@ -21,6 +21,5 @@ for episode in range(NUM_EPISODES):
     if done or truncated:
         observation = env.reset()
 
-print(sum)
 # Close the environment
 env.close()
