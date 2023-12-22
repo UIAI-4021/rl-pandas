@@ -2,6 +2,9 @@ Metadata-Version: 2.1
 Name: gym-maze
 Version: 0.4
 License: MIT
+<<<<<<< HEAD
 Requires-Dist: gym
 Requires-Dist: pygame
 Requires-Dist: numpy
+=======
+>>>>>>> 21c94a7 (adding mai parts)
