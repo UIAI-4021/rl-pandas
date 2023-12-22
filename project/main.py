@@ -29,7 +29,7 @@ import gym_maze
 env = gym.make("maze-random-10x10-plus-v0")
 observation = env.reset()
 
-# Define the maximum number of iterations
+
 NUM_EPISODES = 1000
 
 for episode in range(NUM_EPISODES):
