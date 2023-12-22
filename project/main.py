@@ -1,71 +1,69 @@
 import gym
 import numpy as np
-
-
-class Maze:
-
-    @staticmethod
-    def choose_action(state):
-        action = 0
-        epsilon = 0.8
-
-        epsilon_choice = np.random.uniform(0, 1)
-
-        if epsilon_choice < epsilon:
-            action = env.action_space.sample()
-        else:
-            action = np.argmax(Q[state, :])
-        return action
-
-    @staticmethod
-    def update(state, state2, reward, action, action2):
-        predict = Q[state, action]
-        target = reward + 0.8 * Q[state2, action2]
-        Q[state, action] = Q[state, action] + 0.9 * (target - predict)
-
-
 import gym_maze
+
+alpha = 0.1  # learning rate
+gamma = 0.99  # discount factor
+epsilon = 0.1  # exploration-exploitation trade-off
+total_episodes = 1000  # number of episodes
+
+def choose_action(state):
+    if np.random.uniform(0, 1) < epsilon:
+        return np.random.choice(action_space_size)
+    else:
+        return np.argmax(q_table[state, :])
+    
+def update(state, action, reward, next_state, next_action):
+    q_table[state, action] = q_table[state, action] + alpha * \
+                            (reward + gamma * q_table[next_state, next_action] - q_table[state, action])
+
+
+
 # Create an environment
-env = gym.make("maze-random-10x10-plus-v0")
+env = gym.make("maze-random-10x10-v0")
 observation = env.reset()
 
 
 NUM_EPISODES = 1000
 
+<<<<<<< HEAD
 for episode in range(NUM_EPISODES):
 <<<<<<< HEAD
 
     # TODO: Implement the agent policy here
 =======
+=======
+Q = np.zeros((100, 4))
+sum = 0
+
+for episode in range(NUM_EPISODES):
+    print(f'episode : {episode}')
+>>>>>>> 2cf75f1 (tmp)
     training = 0
     state1 = 0
     action1 = Maze.choose_action(state1)
+    env.render()
 
-    while training < 100:
-        # Visualizing the training
+    for t in range(200):  # maximum time steps per episode
         env.render()
 
-        # Getting the next state
-        state2, reward, done, info = env.step(action1)
-        state2 = state2[0] * 10 + state2[1]
+        # Choose the current action using epsilon-greedy policy
+        action = choose_action(state)
 
-        # Choosing the next action
-        action2 = Maze.choose_action(state2)
+        # Take the chosen action and observe the next state and reward
+        next_state, reward, done, _ = env.step(action)
 
+        # Choose the next action using epsilon-greedy policy
+        next_action = choose_action(next_state)
 
-        # Learning the Q-value
-        Maze.update(state1, state2, reward, action1, action2)
+        # Update Q-value
+        update(state, action, reward, next_state, next_action)
 
-        state1 = state2
-        action1 = action2
+        state = next_state
 
-        # Updating the respective vaLues
-        training += 1
-        reward += 1
-
-        # If at the end of learning process
         if done:
             break
+<<<<<<< HEAD
 >>>>>>> 5872190 (adding mai parts)
     # Note: .sample() is used to sample random action from the environment's action space
 
@@ -79,4 +77,10 @@ for episode in range(NUM_EPISODES):
         observation = env.reset()
 
 # Close the environment
+=======
+
+
+# Close the environment
+print(sum)
+>>>>>>> 2cf75f1 (tmp)
 env.close()
