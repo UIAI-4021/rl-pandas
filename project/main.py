@@ -26,7 +26,7 @@ class Maze:
 
 import gym_maze
 # Create an environment
-env = gym.make("maze-random-10x10-plus-v0")
+env = gym.make("maze-random-10x10-v0")
 observation = env.reset()
 
 
@@ -34,6 +34,7 @@ NUM_EPISODES = 1000
 
 Q = np.zeros((100, 4))
 for episode in range(NUM_EPISODES):
+    print(episode)
     training = 0
     state1 = 0
     action1 = Maze.choose_action(state1)
@@ -58,11 +59,19 @@ for episode in range(NUM_EPISODES):
 
         # Updating the respective vaLues
         training += 1
-        reward += 1
+
+        next_state, reward, done, truncated = env.step(action1)
 
         # If at the end of learning process
-        if done:
-            break
+        if state1 == 99:
+            reward = 1
+        else:
+            reward = (-0.5)/state1
+
+        if done or truncated:
+            observation = env.reset()
+            training = 100
+            print("WON  ********************************!")
 
 for episode in range(NUM_EPISODES):
     env.render()
@@ -75,6 +84,7 @@ for episode in range(NUM_EPISODES):
 
     # Perform the action and receive feedback from the environment
     next_state, reward, done, truncated = env.step(action)
+
 
     if done or truncated:
         observation = env.reset()
