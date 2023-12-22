@@ -3,8 +3,16 @@ Name: gym-maze
 Version: 0.4
 License: MIT
 <<<<<<< HEAD
+<<<<<<< HEAD
 Requires-Dist: gym
 Requires-Dist: pygame
 Requires-Dist: numpy
 =======
 >>>>>>> 21c94a7 (adding mai parts)
+=======
+
+Requires-Dist: gym
+Requires-Dist: pygame
+Requires-Dist: numpy
+
+>>>>>>> 97cdb8e84535dce6442c01d6c4b7a0af9a32848b
