@@ -29,13 +29,13 @@ import gym_maze
 env = gym.make("maze-random-10x10-plus-v0")
 observation = env.reset()
 
-# Define the maximum number of iterations
+
 NUM_EPISODES = 1000
 
 Q = np.zeros((100, 4))
 for episode in range(NUM_EPISODES):
     training = 0
-    state1 = env.reset()
+    state1 = 0
     action1 = Maze.choose_action(state1)
 
     while training < 100:
@@ -44,9 +44,11 @@ for episode in range(NUM_EPISODES):
 
         # Getting the next state
         state2, reward, done, info = env.step(action1)
+        state2 = state2[0] * 10 + state2[1]
 
         # Choosing the next action
         action2 = Maze.choose_action(state2)
+
 
         # Learning the Q-value
         Maze.update(state1, state2, reward, action1, action2)
