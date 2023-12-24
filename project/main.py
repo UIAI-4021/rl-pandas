@@ -1,19 +1,20 @@
 import gym
 import numpy as np
 import gym_maze
-
-
+from tqdm import tqdm
 
 class Maze:
 
     @staticmethod
     def choose_action(state):
         action = 0
-        epsilon = 0.8
+        epsilon = 0.1
 
-        epsilon_choice = np.random.uniform(0, 1)
+        epsilon_choice = np.random.choice((1,0) , p=[epsilon, 1-epsilon])
 
-        if epsilon_choice < epsilon:
+        # epsilon_choice = np.random.uniform(0, 1)
+
+        if epsilon_choice:
             action = env.action_space.sample()
         else:
             action = np.argmax(Q[state, :])
@@ -22,11 +23,10 @@ class Maze:
     @staticmethod
     def update(state, state2, reward, action, action2):
         predict = Q[state, action]
-        target = reward + 0.8 * Q[state2, action2]
-        Q[state, action] = Q[state, action] + 0.9 * (target - predict)
+        target = reward + 0.9 * Q[state2, action2]
+        Q[state, action] = Q[state, action] + 0.1 * (target - predict)
 
 
-import gym_maze
 # Create an environment
 env = gym.make("maze-random-10x10-v0")
 observation = env.reset()
@@ -34,15 +34,17 @@ observation = env.reset()
 
 NUM_EPISODES = 1000
 
+sum = 0
 
 Q = np.zeros((100, 4))
+# for episode in tqdm(range(NUM_EPISODES) , desc= 'Learning'):
 for episode in range(NUM_EPISODES):
     print(episode)
     training = 0
     state1 = 0
     action1 = Maze.choose_action(state1)
 
-    while training < 100:
+    while training < 200:
         # Visualizing the training
         env.render()
 
@@ -73,7 +75,26 @@ for episode in range(NUM_EPISODES):
 
         if done or truncated:
             observation = env.reset()
-            training = 100
+            # training = 100
+            sum +=1
             print("WON  ********************************!")
+            break
+next_state = 0
+t = 0
+observation = env.reset()
+for i in range(10000):
+    env.render()
+    action = np.argmax(Q[next_state, :])
+    # print(f'action is: {action}')
+    # Perform the action and receive feedback from the environment
+    next_state, reward, done, truncated = env.step(action)
+    next_state = next_state[0] * 10 + next_state[1]
 
+    if done or truncated:
+        observation = env.reset()
+print(f'total win : {t}')
+
+
+
+# print(f'sum is : {sum}')
 env.close()
