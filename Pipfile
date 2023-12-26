@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 gym = "==0.23.1"
 pygame = "*"
+tqdl = "*"
+tqdm = "*"
 
 [dev-packages]
 
