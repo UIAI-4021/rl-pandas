@@ -1,6 +1,6 @@
 # Reinforcement Learning Maze Solver
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![animated gif](https://s31.picofile.com/file/8470900918/Screenshot_2023_12_26_220615.png)
 
 ## Authors
 - Melika Shirian
@@ -62,6 +62,7 @@ To set up the environment, download the package from [this link](provide_the_lin
 
 ```bash
 python setup.py install
+```
 For more details, refer to the [installation guide](link_to_installation_guide).
 
 ## References
