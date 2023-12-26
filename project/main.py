@@ -28,33 +28,31 @@ class Maze:
 
 
 # Create an environment
-env = gym.make("maze-random-10x10-v0")
+env = gym.make("maze-random-10x10-plus-v0")
 observation = env.reset()
-
 
 NUM_EPISODES = 1000
 
-sum = 0
+total_win_during_learning = 0
 
 Q = np.zeros((100, 4))
-# for episode in tqdm(range(NUM_EPISODES) , desc= 'Learning'):
+#for episode in tqdm(range(NUM_EPISODES) , desc= 'Learning'):
 for episode in range(NUM_EPISODES):
-    print(episode)
+    #print(f'Episode: {episode}')
+
     training = 0
     state1 = 0
     action1 = Maze.choose_action(state1)
 
-    while training < 200:
-        # Visualizing the training
+    while training < 200:   #or not done
         env.render()
 
         # Getting the next state
-        state2, reward, done, info = env.step(action1)
-        state2 = state2[0] * 10 + state2[1]
+        state2, reward, done, truncated = env.step(action1)
+        state2 = state2[0] * 10 + state2[1] #converting state from 2d into 1d out of 100
 
         # Choosing the next action
         action2 = Maze.choose_action(state2)
-
 
         # Learning the Q-value
         Maze.update(state1, state2, reward, action1, action2)
@@ -65,8 +63,6 @@ for episode in range(NUM_EPISODES):
         # Updating the respective vaLues
         training += 1
 
-        next_state, reward, done, truncated = env.step(action1)
-
         # If at the end of learning process
         if state1 == 99:
             reward = 1
@@ -75,26 +71,30 @@ for episode in range(NUM_EPISODES):
 
         if done or truncated:
             observation = env.reset()
-            # training = 100
-            sum +=1
-            print("WON  ********************************!")
+            total_win_during_learning +=1
+            # print("WON  ********************************!")
             break
+
+#==========================================================
+# TESTING THE AGENT AFTER LEARNING USING SARSA ALGORITHN.
+#==========================================================
+
 next_state = 0
-t = 0
+total_win_after_learning = 0
 observation = env.reset()
 for i in range(10000):
     env.render()
     action = np.argmax(Q[next_state, :])
     # print(f'action is: {action}')
-    # Perform the action and receive feedback from the environment
+
     next_state, reward, done, truncated = env.step(action)
     next_state = next_state[0] * 10 + next_state[1]
 
     if done or truncated:
+        total_win_after_learning +=1
         observation = env.reset()
-print(f'total win : {t}')
 
+print(f'total win in 10000 itterarion after learning: {total_win_after_learning}')
 
-
-# print(f'sum is : {sum}')
+print(f'total win during learning is : {total_win_during_learning}')
 env.close()
