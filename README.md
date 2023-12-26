@@ -1,6 +1,6 @@
 # Reinforcement Learning Maze Solver
 
-![animated gif](https://s31.picofile.com/file/8470900918/Screenshot_2023_12_26_220615.png)
+<img src="https://s31.picofile.com/file/8470900918/Screenshot_2023_12_26_220615.png" alt="Alt text" width="500" height="500">
 
 ## Authors
 - Melika Shirian
