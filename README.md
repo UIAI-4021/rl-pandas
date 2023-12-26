@@ -1,13 +1,61 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/gNQJ_GyT)
-# پروژه سوم: حل مسأله با یادگیری تقویتی
-مسیریابی در یک هزارتو با کمک یادگیری تقویتی ...
 
-# منابع آموزشی گیت و گیت‌هاب
-- [آموزش گیت (Git)، گیت هاب و گیت لب - فرادرس (جادی میرمیرانی)](https://faradars.org/courses/fvgit9609-git-github-gitlab)
-- [۲۰ دستور پراستفاده در گیت به همراه مثال](https://dzone.com/articles/top-20-git-commands-with-examples)
-- [چیت‌شیت گیت کوئرا](https://quera.org/college/cheatsheet/git)
+Certainly! Below is a template for a GitHub README file based on the information you've provided. Please replace the placeholders with your actual project details:
 
-# نکات مهم
-- استفاده از گیت و گیت‌هاب در انجام پروژه **اجباری** است.
-- تاریخ ارائه شفاهی، متعاقباً اطلاع‌رسانی می‌شود.
-- مهلت ارسال پروژه **در سامانه کوئرا ذکر شده است**.
+Reinforcement Learning Maze Solver
+
+Overview
+This project implements a maze-solving algorithm using Reinforcement Learning (RL) techniques. The RL algorithm, based on SARSA, is applied to an environment provided by the OpenAI Gym library. The goal is to train an intelligent agent to navigate through a maze and reach a predefined target.
+
+Table of Contents
+Introduction
+Usage
+Environment Setup
+References
+License
+Introduction
+Reinforcement Learning (RL) is a powerful paradigm that enables autonomous agents to learn optimal decision-making strategies in dynamic environments. In this project, we utilize the SARSA algorithm to teach an agent to navigate a maze within the OpenAI Gym framework.
+
+For a detailed explanation of the project, refer to the project report.
+
+Usage
+To use the maze-solving RL algorithm, follow these steps:
+
+Environment Setup:
+
+Install the required dependencies using:
+bash
+Copy code
+python setup.py install
+Code Execution:
+
+Open the provided code file and customize hyperparameters if needed.
+Run the Code:
+
+Execute the code, and observe the agent's learning progress.
+Post-Learning Evaluation:
+
+After learning, the agent runs for an additional 10,000 steps, and the total wins are printed.
+Review Output:
+
+Analyze the printed output to assess the agent's performance.
+Environment Closure:
+
+The environment is closed automatically, concluding the program.
+Environment Setup
+To set up the environment, download the package from this link and run the following command:
+
+bash
+Copy code
+python setup.py install
+For more details, refer to the installation guide.
+
+References
+GeeksforGeeks. "SARSA Reinforcement Learning." Link
+
+OpenAI. "ChatGPT." Link
+
+Russell, Stuart, and Norvig, Peter. Artificial Intelligence: A Modern Approach. (Book)
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
